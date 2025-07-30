@@ -17,20 +17,21 @@ const AddRideModal = ({ onClose, onSave }) => {
     }
 
     const newRide = {
-      id: Date.now(),
       name: rideName,
-      date,
-      location: {
-        lat: parseFloat(latitude),
-        lng: parseFloat(longitude),
-      },
-      distance: parseFloat(distance) || 0,
-      elevation: parseFloat(elevation) || 0,
-      notes,
-      photos: [],
-    };
+    date,
+    location: {
+      name: "Lausanne", // this can be user-input in the future
+      lat: parseFloat(latitude),
+      lng: parseFloat(longitude),
+    },
+    distance: parseFloat(distance) || 0,
+    elevation: parseFloat(elevation) || 0,
+    notes,
+    photos: [], // future file inputs here
+  };
 
-    onSave(newRide);
+onSave(newRide);
+
   };
 
   return (
