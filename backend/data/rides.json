@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1753914402631,
+    "name": "test",
+    "date": "2001-01-01",
+    "location": {
+      "lat": 20,
+      "lng": 20
+    },
+    "distance": 100,
+    "elevation": 2000,
+    "notes": "",
+    "photos": [],
+    "createdAt": "2025-07-30T22:26:42.631Z"
+  }
+]
