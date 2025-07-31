@@ -1,9 +1,24 @@
 import React, { useState } from "react";
-import { FiSearch, FiUpload, FiCalendar, FiMapPin } from "react-icons/fi";
+import { FiSearch, FiCalendar, FiMapPin, FiImage } from "react-icons/fi";
+import PhotoUpload from "./PhotoUpload";
+import usePhotos from "../hooks/usePhotos";
 
 const Sidebar = () => {
   const [filterByYear, setFilterByYear] = useState(false);
-  const [year, setYear] = useState(2025); // default slider year
+  const [year, setYear] = useState(2025);
+  const [showPhotoUpload, setShowPhotoUpload] = useState(false);
+
+  const { uploadPhotos, loading } = usePhotos();
+
+  const handlePhotoUpload = async (files, metadata) => {
+    try {
+      await uploadPhotos(files, metadata);
+      // Success feedback could be added here
+    } catch (error) {
+      console.error('Upload failed:', error);
+      // Error handling is done in the PhotoUpload component
+    }
+  };
 
   return (
     <div className="flex flex-col h-full space-y-6 overflow-y-auto p-4">
@@ -77,18 +92,36 @@ const Sidebar = () => {
         />
       </section>
 
-      {/* Photo Upload */}
+      {/* Photo Management */}
       <section>
-        <h3 className="flex items-center text-lg font-semibold mb-2 text-gray-700">
-          <FiUpload className="mr-2 text-pink-500" />
-          Upload Photos
-        </h3>
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          className="w-full border border-gray-300 rounded-md p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-400"
-        />
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="flex items-center text-lg font-semibold text-gray-700">
+            <FiImage className="mr-2 text-pink-500" />
+            Photos
+          </h3>
+          <button
+            onClick={() => setShowPhotoUpload(!showPhotoUpload)}
+            className="text-sm px-3 py-1 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-md transition-colors"
+          >
+            {showPhotoUpload ? 'Hide Upload' : 'Upload Photos'}
+          </button>
+        </div>
+
+        {/* Collapsible Photo Upload Section */}
+        {showPhotoUpload && (
+          <div className="mt-4">
+            <PhotoUpload 
+              onUpload={handlePhotoUpload}
+              loading={loading}
+            />
+          </div>
+        )}
+
+        {!showPhotoUpload && (
+          <p className="text-sm text-gray-500 italic">
+            Click "Upload Photos" to add photos that you can use in your rides
+          </p>
+        )}
       </section>
     </div>
   );
