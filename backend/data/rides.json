@@ -40,5 +40,37 @@
     "notes": "",
     "photos": [],
     "createdAt": "2025-07-30T22:53:48.520Z"
+  },
+  {
+    "id": 1753983636124,
+    "name": "bye cat ride",
+    "date": "2010-10-10",
+    "location": {
+      "lat": 10,
+      "lng": 10
+    },
+    "distance": 10,
+    "elevation": 10,
+    "notes": "",
+    "photos": [
+      1753983599678.9443
+    ],
+    "createdAt": "2025-07-31T17:40:36.124Z"
+  },
+  {
+    "id": 1753985456458,
+    "name": "nendaz test",
+    "date": "2020-01-01",
+    "location": {
+      "lat": 46.1850065,
+      "lng": 7.2948491
+    },
+    "distance": 100,
+    "elevation": 100,
+    "notes": "",
+    "photos": [
+      1753983701442.927
+    ],
+    "createdAt": "2025-07-31T18:10:56.458Z"
   }
 ]

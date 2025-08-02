@@ -161,6 +161,7 @@ const usePhotos = () => {
 
   // Get photos by IDs (for displaying selected photos in rides)
   const getPhotosByIds = (photoIds) => {
+    if (!photoIds || photoIds.length === 0) return [];
     return photos.filter(photo => photoIds.includes(photo.id));
   };
 
@@ -169,6 +170,13 @@ const usePhotos = () => {
     fetchPhotos();
     fetchAvailableYears();
   }, []);
+
+   // Get photo URL by ID
+  const getPhotoUrl = (photoId) => {
+    const photo = photos.find(p => p.id === photoId);
+    if (!photo) return null;
+    return `${API_BASE_URL.replace('/api', '')}${photo.url}`;
+  };
 
   return {
     photos,

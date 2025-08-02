@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { FiImage } from "react-icons/fi";
+import { FiImage, FiMapPin } from "react-icons/fi";
 import PhotoSelector from "./PhotoSelector";
+import LocationSearch from "./LocationSearch";
 import usePhotos from "../hooks/usePhotos";
 
 const AddRideModal = ({ onClose, onSave }) => {
   const [rideName, setRideName] = useState("");
   const [date, setDate] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState("");
   const [notes, setNotes] = useState("");
@@ -19,7 +19,7 @@ const AddRideModal = ({ onClose, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!rideName || !date || !latitude || !longitude) {
+    if (!rideName || !date || !selectedLocation) {
       alert("Please fill in all required fields.");
       return;
     }
@@ -28,9 +28,10 @@ const AddRideModal = ({ onClose, onSave }) => {
       name: rideName,
       date,
       location: {
-        lat: parseFloat(latitude),
-        lng: parseFloat(longitude),
+        lat: selectedLocation.lat,
+        lng: selectedLocation.lng,
       },
+      locationName: selectedLocation.name, // Store the place name too
       distance: parseFloat(distance) || 0,
       elevation: parseFloat(elevation) || 0,
       notes,
@@ -67,24 +68,20 @@ const AddRideModal = ({ onClose, onSave }) => {
             className="w-full border p-2 rounded"
             required
           />
-          <input
-            type="number"
-            placeholder="Latitude *"
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
-            className="w-full border p-2 rounded"
-            step="0.0001"
-            required
-          />
-          <input
-            type="number"
-            placeholder="Longitude *"
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-            className="w-full border p-2 rounded"
-            step="0.0001"
-            required
-          />
+          
+          {/* Location Search */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <FiMapPin className="inline mr-1" />
+              Location *
+            </label>
+            <LocationSearch
+              onLocationSelect={setSelectedLocation}
+              selectedLocation={selectedLocation}
+              placeholder="Search for your ride location (e.g., 'London', 'Central Park NYC')"
+            />
+          </div>
+
           <input
             type="number"
             placeholder="Distance (km)"

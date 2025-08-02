@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1753983599678.9443,
+    "filename": "photos-1753983599671-733145527.jpg",
+    "originalName": "bye-cat.jpg",
+    "url": "/uploads/photos-1753983599671-733145527.jpg",
+    "size": 7646,
+    "mimetype": "image/jpeg",
+    "uploadedAt": "2025-07-31T17:39:59.678Z",
+    "dateTaken": "2010-10-10",
+    "description": "",
+    "tags": [
+      "mountains"
+    ]
+  },
+  {
+    "id": 1753983701442.927,
+    "filename": "photos-1753983701382-995952810.png",
+    "originalName": "chaletSnow.png",
+    "url": "/uploads/photos-1753983701382-995952810.png",
+    "size": 2014468,
+    "mimetype": "image/png",
+    "uploadedAt": "2025-07-31T17:41:41.442Z",
+    "dateTaken": "2011-11-11",
+    "description": "",
+    "tags": [
+      "family"
+    ]
+  }
+]
